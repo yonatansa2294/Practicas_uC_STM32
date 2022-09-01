@@ -1,0 +1,10 @@
+03:51:08 **** Incremental Build of configuration Debug for project P2_Delays ****
+make -j8 all 
+arm-none-eabi-size   P2_Delays.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6000	     32	   1608	   7640	   1dd8	P2_Delays.elf
+Finished building: default.size.stdout
+ 
+
+03:51:08 Build Finished. 0 errors, 0 warnings. (took 210ms)
+

@@ -1,0 +1,28 @@
+03:50:02 **** Incremental Build of configuration Debug for project P1_Leds ****
+make -j8 all 
+arm-none-eabi-size   P1_Leds.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6516	     36	   1580	   8132	   1fc4	P1_Leds.elf
+Finished building: default.size.stdout
+ 
+03:50:15 **** Incremental Build of configuration Debug for project P1_Leds ****
+make -j8 all 
+arm-none-eabi-size   P1_Leds.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6516	     36	   1580	   8132	   1fc4	P1_Leds.elf
+Finished building: default.size.stdout
+ 
+03:51:08 **** Incremental Build of configuration Debug for project P2_Delays ****
+make -j8 all 
+arm-none-eabi-size   P2_Delays.elf 
+   text	   data	    bss	    dec	    hex	filename
+   6000	     32	   1608	   7640	   1dd8	P2_Delays.elf
+Finished building: default.size.stdout
+ 
+03:51:37 **** Incremental Build of configuration Debug for project BlinkLed ****
+make -j8 all 
+arm-none-eabi-size   BlinkLed.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5852	     32	   1568	   7452	   1d1c	BlinkLed.elf
+Finished building: default.size.stdout
+ 
