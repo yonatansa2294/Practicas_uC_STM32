@@ -34,11 +34,6 @@ static void Error_Handler(void);
   * @retval int
   */
 
-/* definition of symbolic constants for the delays of each led */
-#define	TIME_LED1	100
-#define TIME_LED2	500
-#define TIME_LED3	1000
-
 /* Definition of structures for delay generation*/
 delay_t delayNbLED1,delayNbLED2,delayNbLED3;
 
@@ -67,24 +62,15 @@ int main(void)
   {
 	  /* check if 100ms have expired, to toggle the status of led */
 	  if(delayRead(&delayNbLED1))
-	  {
 		  BSP_LED_Toggle(LED_USER);
-		  delayNbLED1.running = false;	//reset LED1 flag
-	  }
 
 	  /* check if 500ms have expired, to toggle the status of led */
 	  if(delayRead(&delayNbLED2))
-	  {
 		  BSP_LED_Toggle(LED1);
-		  delayNbLED2.running = false;	//reset LED2 flag
-	  }
 
 	  /* check if 1000ms have expired, to toggle the status of led */
 	  if(delayRead(&delayNbLED3))
-	  {
 		  BSP_LED_Toggle(LED2);
-		  delayNbLED3.running = false;	//reset LED3 flag
-	  }
   }
 }
 
@@ -98,16 +84,28 @@ void delayInit( delay_t * delay, tick_t duration )
 /* routine to check if the expected time has elapsed */
 bool_t delayRead( delay_t * delay )
 {
+	bool toggleLed = false;	//flag to indicated when the led is to be toggle
+
 	/* check flag status to start delay calculation */
 	if(delay->running == false)
 	{
 		delay->startTime = HAL_GetTick();	//initial timestamp
 		delay->running = true;				// update flag running
-		return false;
+		toggleLed = false;					//reset flag for toggle led
 	}
 	else
+	{
 		/* check if the delay duration has been met */
-		return (HAL_GetTick()-delay->startTime)>= delay->duration ? true: false; //returns true if the time has expired
+		if((HAL_GetTick()-delay->startTime)>= delay->duration)
+		{
+			delay->running = false;	//reset flag of start
+			toggleLed = true;	//returns true if the time has expired
+		}
+	}
+
+	return toggleLed;
+
+		//return (HAL_GetTick()-delay->startTime)>= delay->duration ? true: false;
 }
 
 /* routine to modify the duration of the delay in the structure */

@@ -49,5 +49,9 @@ bool_t delayRead( delay_t * delay );
 void delayWrite( delay_t * delay, tick_t duration );
 
 /* Private defines -----------------------------------------------------------*/
+/* definition of symbolic constants for the delays of each led */
+#define	TIME_LED1	100
+#define TIME_LED2	500
+#define TIME_LED3	1000
 
 #endif /* __MAIN_H */
