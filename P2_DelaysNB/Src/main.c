@@ -77,8 +77,12 @@ int main(void)
 /* structure initialization routine */
 void delayInit( delay_t * delay, tick_t duration )
 {
-	delay->running = false; 	// Initialize flag running
-	delay->duration = duration;	// Load the initial value of the delay
+	if(delay != NULL && duration > 0 && duration < MAX_DELAY)	// verification of parameters
+	{
+		delay->running = false; 	// Initialize flag running
+		delay->duration = duration;	// Load the initial value of the delay
+	}
+
 }
 
 /* routine to check if the expected time has elapsed */
@@ -91,7 +95,6 @@ bool_t delayRead( delay_t * delay )
 	{
 		delay->startTime = HAL_GetTick();	//initial timestamp
 		delay->running = true;				// update flag running
-		toggleLed = false;					//reset flag for toggle led
 	}
 	else
 	{

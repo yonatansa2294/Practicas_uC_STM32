@@ -53,5 +53,6 @@ void delayWrite( delay_t * delay, tick_t duration );
 #define	TIME_LED1	100
 #define TIME_LED2	500
 #define TIME_LED3	1000
+#define MAX_DELAY	30000
 
 #endif /* __MAIN_H */
