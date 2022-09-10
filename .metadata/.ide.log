@@ -640,3 +640,15 @@
 
 
 2022-09-06 17:18:24,822 [INFO] Activator:178 - !SESSION log4j initialized
+2022-09-06 20:01:11,987 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] SWT SessionManagerDBus: Failed to UnregisterClient: GDBus.Error:org.freedesktop.DBus.Error.NoReply: Message recipient disconnected from message bus without replying
+2022-09-07 00:29:50,261 [INFO] Activator:177 - 
+
+
+2022-09-07 00:29:50,262 [INFO] Activator:178 - !SESSION log4j initialized
+2022-09-07 00:36:48,188 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_External_tool_project_builders_migration_2 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages
+2022-09-07 00:36:48,189 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_Prompt_before_migrating_3 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages
+2022-09-07 00:36:48,189 [ERROR] LogOutputStream:74 - [STDERR_REDIRECT] Warning: NLS missing message: ExternalToolsPreferencePage_1 in: org.eclipse.ui.externaltools.internal.ui.ExternalToolsUIMessages
+2022-09-10 14:27:30,717 [INFO] Activator:177 - 
+
+
+2022-09-10 14:27:30,719 [INFO] Activator:178 - !SESSION log4j initialized

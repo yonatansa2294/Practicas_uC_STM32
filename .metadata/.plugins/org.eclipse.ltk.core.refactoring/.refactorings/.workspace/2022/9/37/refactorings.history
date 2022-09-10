@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;P3_Modularization_DelayNB &apos; to &apos;P3_Modularization&apos;" description="Rename resource &apos;P3_Modularization_DelayNB &apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/P3_Modularization_DelayNB " name="P3_Modularization" stamp="1662529279421" updateReferences="true"/>
+</session>
