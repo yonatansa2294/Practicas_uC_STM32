@@ -1,6 +1,8 @@
-16:20:59 **** Incremental Build of configuration Debug for project P3_Modularization ****
+23:53:55 **** Incremental Build of configuration Debug for project P3_Modularization ****
 make -j8 all 
 arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Inc -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/BSP/STM32F4xx_BlackPill" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/Core/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Src" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/STM32F4xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Inc -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/BSP/STM32F4xx_BlackPill" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/Core/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Src" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/STM32F4xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.d" -MT"Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_msp.o"
+arm-none-eabi-gcc "../Drivers/Core/Src/stm32f4xx_it.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Inc -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/BSP/STM32F4xx_BlackPill" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/Core/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/API/Src" -I"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/Drivers/STM32F4xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Core/Src/stm32f4xx_it.d" -MT"Drivers/Core/Src/stm32f4xx_it.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Core/Src/stm32f4xx_it.o"
 arm-none-eabi-gcc -o "P3_Modularization.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/jonatan/FIUBA/uC/Practicas/P3_Modularization/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="P3_Modularization.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: P3_Modularization.elf
  
@@ -8,7 +10,7 @@ arm-none-eabi-size   P3_Modularization.elf
 arm-none-eabi-objdump -h -S  P3_Modularization.elf  > "P3_Modularization.list"
 arm-none-eabi-objcopy  -O ihex  P3_Modularization.elf  "P3_Modularization.hex"
    text	   data	    bss	    dec	    hex	filename
-   6016	     36	   1588	   7640	   1dd8	P3_Modularization.elf
+   6112	     40	   1584	   7736	   1e38	P3_Modularization.elf
 Finished building: default.size.stdout
  
 Finished building: P3_Modularization.hex
@@ -16,5 +18,5 @@ Finished building: P3_Modularization.hex
 Finished building: P3_Modularization.list
  
 
-16:20:59 Build Finished. 0 errors, 0 warnings. (took 314ms)
+23:53:56 Build Finished. 0 errors, 0 warnings. (took 423ms)
 

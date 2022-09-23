@@ -1,0 +1,21 @@
+00:35:50 **** Incremental Build of configuration Debug for project P4_2 API_DEBOUNCE ****
+make -j8 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Inc -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/CMSIS/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/BSP/STM32F4xx_BlackPill" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/Core/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/API/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/API/Src" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/STM32F4xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Drivers/API/Src/API_debounce.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F411xE -c -I../Inc -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/CMSIS/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/CMSIS/Device/ST/STM32F4xx/Include" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/BSP/STM32F4xx_BlackPill" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/Core/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/API/Inc" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/API/Src" -I"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/Drivers/STM32F4xx_HAL_Driver/Inc" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/API/Src/API_debounce.d" -MT"Drivers/API/Src/API_debounce.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/API/Src/API_debounce.o"
+arm-none-eabi-gcc -o "P4_2 API_DEBOUNCE.elf" @"objects.list"   -mcpu=cortex-m4 -T"/home/jonatan/FIUBA/uC/Practicas/P4_2 API_DEBOUNCE/STM32F411CEUX_FLASH.ld" --specs=nosys.specs -Wl,-Map="P4_2 API_DEBOUNCE.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: P4_2 API_DEBOUNCE.elf
+ 
+arm-none-eabi-size   P4_2\ API_DEBOUNCE.elf 
+arm-none-eabi-objdump -h -S  P4_2\ API_DEBOUNCE.elf  > "P4_2 API_DEBOUNCE.list"
+arm-none-eabi-objcopy  -O ihex  P4_2\ API_DEBOUNCE.elf  "P4_2 API_DEBOUNCE.hex"
+   text	   data	    bss	    dec	    hex	filename
+   6776	     40	   1600	   8416	   20e0	P4_2 API_DEBOUNCE.elf
+Finished building: default.size.stdout
+ 
+Finished building: P4_2 API_DEBOUNCE.hex
+ 
+Finished building: P4_2 API_DEBOUNCE.list
+ 
+
+00:35:51 Build Finished. 0 errors, 0 warnings. (took 494ms)
+

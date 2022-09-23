@@ -1,0 +1,94 @@
+/*
+ * API_debounce.c
+ *
+ *  Created on: 18 set. 2022
+ *      Author: jonatan
+ */
+
+/**
+  * @brief  Initilizes the FSM with the initial state of the unpressed button
+  * @param  None
+  * @retval None
+  */
+
+
+/* Enumeration of states for FSM*/
+static typedef enum{
+	BUTTON_UP,
+	BUTTON_FALLING,
+	BUTTON_DOWN,
+	BUTTON_RAISING,
+} debounceState_t;
+
+debounceState_t fsmButtonState;
+bool_t stateFSM;
+
+
+void debounceFSM_init()
+{
+	fsmButtonState = BUTTON_UP;
+}
+
+
+/**
+  * @brief  Reads the state of the user button and implements state transition logic to update the outputs
+  * by triggering events buttonPressed y buttonReleased
+  * @param  None
+  * @retval None
+  */
+void debounceFSM_update()
+{
+	switch (fsmButtonState)
+	{
+		case BUTTON_UP:	//initial state
+			if(!BSP_PB_GetState(BUTTON_USER))
+				fsmButtonState = BUTTON_FALLING;	//falling edge detected
+			break;
+
+		case BUTTON_FALLING:
+			if(delayRead(&delayNbLED))	// check if the anti-rebound delay has expired
+			{
+				if(!BSP_PB_GetState(BUTTON_USER))	//new reading to check if the button was pressed
+				{
+					fsmButtonState = BUTTON_DOWN;
+					buttonPressed();	//valid button press -> call to button pressed event
+				}
+				else
+					fsmButtonState = BUTTON_UP;	// button is not pressed, return to initial state
+			}
+			break;
+
+		case BUTTON_DOWN:
+			if(BSP_PB_GetState(BUTTON_USER))
+				fsmButtonState = BUTTON_RAISING;	//rising edge detected
+			break;
+
+		case BUTTON_RAISING:
+			if(delayRead(&delayNbLED))	// check if the anti-rebound delay has expired
+			{
+				if(BSP_PB_GetState(BUTTON_USER))	//new reading to check if the button is not pressed
+				{
+					fsmButtonState = BUTTON_UP;
+					buttonReleased();	//valid button released -> call to button released event
+				}
+				else
+					fsmButtonState = BUTTON_DOWN; // button still pressed, return to button down state
+			}
+			break;
+
+		default:
+			Error_Handler();
+			break;
+	}
+}
+
+void buttonPressed()
+{
+
+}
+
+void buttonReleased()
+{
+
+}
+

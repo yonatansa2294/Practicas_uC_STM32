@@ -1,0 +1,22 @@
+/*
+ * API_debounce.h
+ *
+ *  Created on: 18 set. 2022
+ *      Author: jonatan
+ */
+
+#ifndef API_INC_API_DEBOUNCE_H_
+#define API_INC_API_DEBOUNCE_H_
+
+//#include "stm32f4xx_blackpill.h"
+#include "API_delay.h"
+#include "stdbool.h"
+typedef bool bool_t;
+
+#define DEBOUNCE_DELAY	40U	//delay for debounce
+
+void debounceFSM_init();
+void debounceFSM_update();
+bool_t readKey();
+
+#endif /* API_INC_API_DEBOUNCE_H_ */
