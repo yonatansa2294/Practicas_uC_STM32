@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "API_delay.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* Private typedef -----------------------------------------------------------*/
@@ -33,13 +34,15 @@ static void Error_Handler(void);
   * @retval int
   */
 
-#define DELAY	200	//delay for each led
-#define NLEDS	3	//number of LEDs used
+#define DELAY_LED		500	//delay for each led
+#define NLEDS			3	//number of LEDs used
+#define NSEQ			2	//number of sequence
 
 /*-------- Definition of variables -----------*/
 delay_t delayNbLED;	//structure for delay generation
-uint8_t ledArray[NLEDS] = {LED_USER,LED1,LED2};
-uint8_t led = 0;
+uint8_t ledArray[NSEQ][NLEDS] = {{LED_USER,LED1,LED2},{LED_USER,LED2,LED1}}; //matrix with led sequence
+uint8_t seq = 0;	//initial sequence
+uint8_t led = 0;	//initial led
 
 int main(void)
 {
@@ -53,7 +56,7 @@ int main(void)
   SystemClock_Config();
 
   /* Initialization of structures */
-  delayInit(&delayNbLED,DELAY);	//initialize structure to implement a delay of 100ms
+  delayInit(&delayNbLED,DELAY_LED);	//initialize structure to implement a delay of 100ms
 
   /* Initialize all LEDS */
   BSP_LED_Init(LED_USER);
@@ -62,29 +65,35 @@ int main(void)
 
   while (1)
   {
-	 /*------- sequence of one led on at a time -------*/
+	  /*------- sequence of one led on at a time -------*/
 	  switch(led)
 	  {
 	  	  case 0:
-	  		  BSP_LED_On(ledArray[led]);
+	  		  BSP_LED_On(ledArray[seq][led]);
 		  break;
 
 	  	  case 1:
-	  		  BSP_LED_On(ledArray[led]);
+	  		  BSP_LED_On(ledArray[seq][led]);
 		  break;
 
 	  	  case 2:
-			  BSP_LED_On(ledArray[led]);
+			  BSP_LED_On(ledArray[seq][led]);
 		  break;
 	  }
 
 	  if(delayRead(&delayNbLED))	// check if 200ms have expired, to toggle the status of led
 	  {
-		  BSP_LED_Off(ledArray[led]);
+		  BSP_LED_Off(ledArray[seq][led]);
 		  led++;	//increment to change the led to be turned on
 
 		  if(led>NLEDS-1)
-			  led = 0;	//reset sequence
+		  {
+			  seq++;			//toggle sequence
+			  if(seq>NSEQ-1)
+				  seq=0;		//reset led sequence
+			  led = 0;			//set initial led
+		  }
+
 	  }
   }
 }
