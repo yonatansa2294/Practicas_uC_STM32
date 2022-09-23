@@ -22,8 +22,7 @@ typedef enum{
 } debounceState_t;
 
 static debounceState_t fsmButtonState;
-static bool_t edgeFallingStatus = false;
-static bool_t keyPressed = false;
+static bool_t keyPressed = false;	//save status of key
 delay_t delayNbLED;				//structure for delay generation
 
 /*------ Private Functions Prototype------*/
@@ -56,12 +55,13 @@ void debounceFSM_update()
 	{
 		case BUTTON_UP:	//initial state
 			if(!BSP_PB_GetState(BUTTON_USER))
+			{
 				fsmButtonState = BUTTON_FALLING;	//falling edge detected
+				delayRead(&delayNbLED);				//initialize delay
+			}
 			break;
 
 		case BUTTON_FALLING:
-			edgeFallingStatus = true;
-
 			if(delayRead(&delayNbLED))	// check if the anti-rebound delay has expired
 			{
 				if(!BSP_PB_GetState(BUTTON_USER))	//new reading to check if the button was pressed
@@ -76,7 +76,10 @@ void debounceFSM_update()
 
 		case BUTTON_DOWN:
 			if(BSP_PB_GetState(BUTTON_USER))
+			{
 				fsmButtonState = BUTTON_RAISING;	//rising edge detected
+				delayRead(&delayNbLED);				//initialize delay
+			}
 			break;
 
 		case BUTTON_RAISING:
@@ -115,7 +118,7 @@ void buttonPressed()
   */
 void buttonReleased()
 {
-	keyPressed = false;
+
 }
 
 /**
@@ -125,17 +128,13 @@ void buttonReleased()
   */
 bool_t readKey()
 {
-	bool_t keyPressedAux;
-
-	edgeFallingStatus = false;
+	bool_t keyPressedAux = false;
 
 	if(keyPressed)
 	{
 		keyPressedAux = true;
 		keyPressed = false;
 	}
-	else
-		keyPressedAux = false;
 
 	return keyPressedAux;
 }
