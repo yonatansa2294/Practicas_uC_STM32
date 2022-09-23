@@ -72,8 +72,6 @@ int main(void)
 
   BSP_PB_Init(BUTTON_USER, BUTTON_MODE_GPIO);
 
-  /* Initialization of delay and FSM */
-  delayInit(&delayNbLED,DEBOUNCE_DELAY);	//initialize structure to implement a delay of 40ms
   debounceFSM_init();	// call to function for initialize FSM
 
 
@@ -90,7 +88,8 @@ int main(void)
   */
 void debounceFSM_init()
 {
-	fsmButtonState = BUTTON_UP;
+	fsmButtonState = BUTTON_UP;	//initial state
+	delayInit(&delayNbLED,DEBOUNCE_DELAY);	//initialize structure to implement a delay of 40ms
 }
 
 /**
@@ -105,7 +104,11 @@ void debounceFSM_update()
 	{
 		case BUTTON_UP:	//initial state
 			if(!BSP_PB_GetState(BUTTON_USER))
+			{
 				fsmButtonState = BUTTON_FALLING;	//falling edge detected
+				delayRead(&delayNbLED);				//initialize delay
+			}
+
 			break;
 
 		case BUTTON_FALLING:
@@ -123,7 +126,10 @@ void debounceFSM_update()
 
 		case BUTTON_DOWN:
 			if(BSP_PB_GetState(BUTTON_USER))
+			{
 				fsmButtonState = BUTTON_RAISING;	//rising edge detected
+				delayRead(&delayNbLED);				//initialize delay
+			}
 			break;
 
 		case BUTTON_RAISING:
